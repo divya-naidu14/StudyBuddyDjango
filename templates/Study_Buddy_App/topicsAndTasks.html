@@ -1,0 +1,223 @@
+{% extends 'Study_Buddy_App/base.html' %}
+{% load static %}
+{% block content %}
+
+    <header>
+        <div class="container h-100 mt-5 py-5">
+            <div class="d-flex h-100 text-center align-items-center">
+                <div class="w-100">
+                    <h1 class="display-3">
+                        {{ subject.name }}
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="">
+        <section class="topics">
+            <div class="container-md">
+                <div class="row g-5 align-items-center">
+                    <div class="container mt-5">
+                        <h2>Topics</h2>
+                        <hr>
+                    </div>
+                    <div class="accordion mt-0" id="topics">
+
+                        {% for topic in topics %}
+                            <div class="col-md-12">
+                                <div class="accordion-item my-2">
+                                    <h2 class="accordion-header d-flex justify-content-between align-items-center" id="topic-{{ topic.id }}-header">
+                                        <button
+                                            class="accordion-button collapsed"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#topic-{{ topic.id }}">
+                                            {{ topic.name }}
+                                        </button>
+                                        <a href="#" class="btn btn-danger mx-2" onclick="deleteTopic({{ topic.id }})">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-x-trash" viewBox="0 0 16 16">
+                                                <use xlink:href="{% static 'icons/icons.svg' %}#x-delete"></use>
+                                            </svg>
+                                        </a>
+                                    </h2>
+                                    <div
+                                    id="topic-{{ topic.id }}"
+                                    class="accordion-collapse collapse"
+                                    data-bs-parent="#topics">
+                                        <div class="accordion-body text-dark">
+                                            <div class="row">
+
+                                                {% for session in topic.sessions %}
+
+                                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                                        <div class="card mb-3">
+                                                            <div class="card-header">
+                                                                Session {{ session.order }}
+                                                            </div>
+                                                            <div class="card-body" style="display: grid; grid-template-columns: auto auto;">
+                                                                <div>
+                                                                    <strong>Day</strong>
+                                                                </div>
+                                                                <div>
+                                                                    {{ session.day }}
+                                                                </div>
+                                                                <div>
+                                                                    <strong>Start Time</strong>
+                                                                </div>
+                                                                <div>
+                                                                    {{ session.start_time }}
+                                                                </div>
+                                                                <div>
+                                                                    <strong>End Time</strong>
+                                                                </div>
+                                                                <div>
+                                                                    {{ session.end_time }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                <div class="container px-4 py-4">
+                    <button id="add-topic-button" class="add-form-button">
+                        <img class="form-button-image" src="{% static 'images/plus_icon.png' %}" alt="Plus Image" style="display: inline;">
+                        <img class="form-button-image" src="{% static 'images/minus_icon.png' %}" alt="Minus Image" style="display: none;">
+                    </button>
+                </div>
+
+                <div id="add-topic-form-container" class="form-div">
+                    <div class="container py-4 px-5 mx-4 mt-2 mb-4 col-md-6 form-container form-container-no-margin">
+                        <form id="add-topic-form" class="form" method="post" action="{% url 'add-topic' subject_id=subject.id %}">
+                            {% csrf_token %}
+                            <h2>Add Topic Form</h2>
+                            <div class="form-group py-2">
+                                <label for="topicName">Topic Name:</label>
+                                <input type="text" class="form-control" id="topicName" name="name" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary my-2">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="Tasks py-5">
+            <div class="container-md">
+                <div class="row g-5 align-items-center">
+                    <div class="container mt-5">
+                        <h2>Tasks</h2>
+                        <hr>
+                    </div>
+                    <div class="accordion mt-0" id="tasks">
+                        {% for task in tasks %}
+                            <div class="col-md-12">
+                                <div class="accordion-item my-2">
+                                    <h2 class="accordion-header" id="task-{{ task.id }}-header">
+                                        <button
+                                        class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#task-{{ task.id }}">
+                                            {{ task.name }}
+                                            <br>
+                                            Due {{ task.deadline }}
+                                        </button>
+                                    </h2>
+                                    <div
+                                    id="task-{{ task.id }}"
+                                    class="accordion-collapse collapse"
+                                    data-bs-parent="#tasks">
+                                        <div class="accordion-body text-dark">
+                                            <div class="row">
+
+                                                {% for session in task.sessions %}
+
+                                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                                        <div class="card mb-3">
+                                                            <div class="card-header">
+                                                                Session {{ session.order }}
+                                                            </div>
+                                                            <div class="card-body" style="display: grid; grid-template-columns: auto auto;">
+                                                                <div>
+                                                                    <strong>Day</strong>
+                                                                </div>
+                                                                <div>
+                                                                    {{ session.day }}
+                                                                </div>
+                                                                <div>
+                                                                    <strong>Start Time</strong>
+                                                                </div>
+                                                                <div>
+                                                                    {{ session.start_time }}
+                                                                </div>
+                                                                <div>
+                                                                    <strong>End Time</strong>
+                                                                </div>
+                                                                <div>
+                                                                    {{ session.end_time }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                <div class="container px-4 py-4">
+                    <button id="add-task-button" class="add-form-button">
+                        <img class="form-button-image" src="{% static 'images/plus_icon.png' %}" alt="Plus Image" style="display: inline;">
+                        <img class="form-button-image" src="{% static 'images/minus_icon.png' %}" alt="Minus Image" style="display: none;">
+                    </button>
+                </div>
+
+                <div id="add-task-form-container" class="form-div">
+                    <div class="container py-4 px-5 mx-4 mt-2 mb-4 col-md-6 form-container form-container-no-margin">
+                        <form id="add-task-form" class="form" method="post" action="{% url 'add-task' subject_id=subject.id %}">
+                            {% csrf_token %}
+                            <h2>Add Task Form</h2>
+                            <div class="form-group py-2">
+                                <label for="taskName">Task Name:</label>
+                                <input type="text" class="form-control" id="taskName" name="name" required>
+                            </div>
+
+                            <div class="form-group py-2">
+                                <label for="deadline">Deadline:</label>
+                                <input type="date" class="form-control" id="deadline" name="deadline" required>
+                                <span id="deadline-error" class="text-danger"></span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary my-2">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+{% endblock content %}

@@ -1,0 +1,164 @@
+{% extends 'Study_Buddy_App/base.html' %}
+{% load static %}
+{% block content %}
+
+    <header>
+        <div class="container h-100 mt-5 py-5">
+            <div class="d-flex h-100 text-center align-items-center">
+                <div class="w-100">
+                    <h1 class="display-3">
+                        Schedule
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="">
+        <div class="container">
+
+            <div id="dateCarousel" class="carousel slide">
+              <div class="carousel-inner">
+                <!-- Date slides -->
+                <div class="carousel-item active">
+                  <h3 class="text-center" id="date">{{ date }}</h3>
+                    <h3 class="text-center" id="formattedDate" style="display: none;">{{ formattedDate }}</h3>
+                </div>
+                <!-- Add more date slides as needed -->
+              </div>
+              <a class="carousel-control-prev" href="{% url 'schedule-previous' date=date %}" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </a>
+
+              <a class="carousel-control-next" href="{% url 'schedule-next' date=date %}" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </a>
+            </div>
+        </div>
+
+
+        <div class="container time-blocks mt-5">
+            {% for session in sessions %}
+                <div class="grid-container py-2 session">
+                    <div class="grid-item">
+                      <div class="d-flex flex-column justify-content-between h-100">
+                        <span class="text-end top-overlap">{{ session.start_time }}</span>
+                        <span class="text-end bottom-overlap">{{ session.end_time }}</span>
+                      </div>
+                    </div>
+                    <div class="grid-item px-3">
+                      <div class="card">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+
+                          {% if session.type == "Task" %}
+                              <div>
+                                <h5 class="card-title">Task</h5>
+                                <p class="card-text text-dark mb-0"><span class="text-muted">Subject &nbsp&nbsp&nbsp</span>{{ session.subject }}</p>
+                                <p class="card-text text-dark mb-0"><span class="text-muted">Task &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>{{ session.task }}</p>
+                                <p class="card-text text-dark"><span class="text-muted">Duration &nbsp</span>{{ session.duration }}</p>
+                              </div>
+                            <a href="{% url 'delete-task-session' id=session.id %}?date={{ formattedDate }}" class="delete-session-btn">
+                              <button class="btn btn-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-x-trash" viewBox="0 0 16 16">
+                                  <use xlink:href="{% static 'icons/icons.svg' %}#x-delete"></use>
+                                </svg>
+                              </button>
+                            </a>
+
+                          {% elif session.type == "Topic" %}
+                            <div>
+                              <h5 class="card-title">Study Time</h5>
+                                <p class="card-text text-dark mb-0"><span class="text-muted">Subject &nbsp&nbsp&nbsp</span>{{ session.subject }}</p>
+                                <p class="card-text text-dark mb-0"><span class="text-muted">Topic &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>{{ session.topic }}</p>
+                                <p class="card-text text-dark"><span class="text-muted">Duration &nbsp</span>{{ session.duration }}</p>
+                            </div>
+                            <a href="{% url 'delete-topic-session' id=session.id %}?date={{ formattedDate }}" class="delete-session-btn">
+                                <button class="btn btn-danger">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-x-trash" viewBox="0 0 16 16">
+                                    <use xlink:href="{% static 'icons/icons.svg' %}#x-delete"></use>
+                                  </svg>
+                                </button>
+                            </a>
+
+                          {% else %}
+                             <div>
+                                <hr>
+                                <p class="card-text text-dark">{{ session.duration }}</p>
+                              </div>
+
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+            <div class="container py-3 text-center px-5 my-5">
+              <button id="add-session-button" class="add-form-button">
+                  <img class="form-button-image" src="{% static 'images/plus_icon.png' %}" alt="Plus Image" style="display: inline;">
+                  <img class="form-button-image" src="{% static 'images/minus_icon.png' %}" alt="Minus Image" style="display: none;">
+              </button>
+            </div>
+
+            <div id="add-session-form-container" class="form-div">
+              <div class="container py-4 px-5 mb-5 col-md-6 form-container">
+                  <form id="add-session-form" class="form">
+                      <h2>Add Session Form</h2>
+                      <div class="form-group py-2">
+                          <label for="subject">Subject:</label>
+                          <select class="form-control" id="subject" name="subject" required>
+                              <option value="">Select</option>
+                          </select>
+                      </div>
+
+                      <div class="form-group py-2">
+                          <label>Session Type:</label><br>
+                          <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="sessionType" id="topicRadio" value="Topic">
+                              <label class="form-check-label" for="topicRadio">Topic</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="sessionType" id="taskRadio" value="Task">
+                              <label class="form-check-label" for="taskRadio">Task</label>
+                          </div>
+                      </div>
+
+                      <div class="form-group py-2" id="topicDropdown" style="display: none;">
+                          <label for="topic">Topic:</label>
+                          <select class="form-control" id="topic" name="topic">
+                          </select>
+                      </div>
+
+                      <div class="form-group py-2" id="taskDropdown" style="display: none;">
+                          <label for="task">Task:</label>
+                          <select class="form-control" id="task" name="task">
+                          </select>
+                      </div>
+
+                      <div class="form-group py-2">
+                          <label for="startTime">Session Start Time:</label>
+                          <input type="time" class="form-control" id="startTime" name="startTime" required>
+                      </div>
+
+                      <div class="form-group py-2">
+                          <label for="endTime">Session End Time:</label>
+                          <input type="time" class="form-control" id="endTime" name="endTime" required>
+                      </div>
+
+                      <button type="submit" class="btn btn-primary my-2">Submit</button>
+                  </form>
+              </div>
+          </div>
+
+
+        </div>
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/scheduleScript.js' %}"></script>
+
+{% endblock content %}

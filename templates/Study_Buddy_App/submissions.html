@@ -1,0 +1,49 @@
+{% extends 'Study_Buddy_App/base.html' %}
+{% load static %}
+{% block content %}
+
+    <header>
+        <div class="container h-100 mt-5 py-5">
+            <div class="d-flex h-100 text-center align-items-center">
+                <div class="w-100">
+                    <h1 class="display-3" class="text-dark">
+                        Submissions
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="">
+        <div class="container">
+            <div class="row">
+
+              {% for submission in submissions %}
+                  <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-header card-header-green text-center">
+                            {{ submission.task_name }}
+                        </div>
+                        <div class="card-body" style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                            <div>
+                                <strong>Subject</strong>
+                            </div>
+                            <div>
+                                {{ submission.subject.name }}
+                            </div>
+                            <div>
+                                <strong>Submitted On</strong>
+                            </div>
+                            <div>
+                                {{ submission.date }}
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              {% endfor %}
+
+            </div>
+          </div>
+    </main>
+
+{% endblock content %}

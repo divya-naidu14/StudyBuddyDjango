@@ -1,0 +1,174 @@
+{% extends 'Study_Buddy_App/base.html' %}
+{% load static %}
+{% block content %}
+
+    <header>
+        <div class="container h-100 mt-5 py-5">
+            <div class="d-flex h-100 text-center align-items-center">
+                <div class="w-100">
+                    <h1 class="display-3">
+                        Help
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="help">
+            <div class="container-md">
+                <hr class="border-3">
+                <div class="row g-5 align-items-center subjects-block">
+
+                    <div class="accordion" id="help">
+                        <div class="col-md-12">
+                            <div class="accordion-item my-2">
+                                <h2 class="accordion-header" id="home-tab-header">
+                                    <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#home-tab">
+                                        Home
+                                    </button>
+                                </h2>
+                                <div
+                                id="home-tab"
+                                class="accordion-collapse collapse"
+                                data-bs-parent="#help">
+                                    Content For Home
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 my-2">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="subjects-tab-header">
+                                    <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#subjects-tab">
+                                        Subjects
+                                    </button>
+                                </h2>
+                                <div
+                                id="subjects-tab"
+                                class="accordion-collapse collapse"
+                                data-bs-parent="#help">
+                                    Content For Subjects
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 my-2">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="schedule-tab-header">
+                                    <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#schedule-tab">
+                                        Schedule
+                                    </button>
+                                </h2>
+                                <div
+                                id="schedule-tab"
+                                class="accordion-collapse collapse"
+                                data-bs-parent="#help">
+                                    Content For Schedule
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- The Templates was planned feature for the project. But since it is ambiguous with the current project
+                        scope, it is removed out for the time being, and is to be treated as a future project scope -->
+                        <!--
+                            <div class="col-md-12 my-2">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="templates-tab-header">
+                                        <button
+                                        class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#templates-tab">
+                                            Templates
+                                        </button>
+                                    </h2>
+                                    <div
+                                    id="templates-tab"
+                                    class="accordion-collapse collapse"
+                                    data-bs-parent="#help">
+                                        Content For Templates
+                                    </div>
+                                </div>
+                            </div>
+                        -->
+
+                        <div class="col-md-12 my-2">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="tasks-tab-header">
+                                    <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#tasks-tab">
+                                        Tasks
+                                    </button>
+                                </h2>
+                                <div
+                                id="tasks-tab"
+                                class="accordion-collapse collapse"
+                                data-bs-parent="#help">
+                                    Content For Tasks
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 my-2">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="submissions-tab-header">
+                                    <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#submissions-tab">
+                                        Submissions
+                                    </button>
+                                </h2>
+                                <div
+                                id="submissions-tab"
+                                class="accordion-collapse collapse"
+                                data-bs-parent="#help">
+                                    Content For Submissions
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 my-2">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="report-tab-header">
+                                    <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#report-tab">
+                                        Report
+                                    </button>
+                                </h2>
+                                <div
+                                id="report-tab"
+                                class="accordion-collapse collapse"
+                                data-bs-parent="#help">
+                                    Content For Report
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock content %}
