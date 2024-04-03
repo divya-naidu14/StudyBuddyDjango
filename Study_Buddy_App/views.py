@@ -280,8 +280,8 @@ def report(request):
     return render(request, 'Study_Buddy_App/report.html', {'report': reportContext})
 
 
-def helpPage(request):
-    return render(request, 'Study_Buddy_App/help.html')
+def infoPage(request):
+    return render(request, 'Study_Buddy_App/info.html')
 
 
 # Utility functions

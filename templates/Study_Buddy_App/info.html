@@ -7,7 +7,7 @@
             <div class="d-flex h-100 text-center align-items-center">
                 <div class="w-100">
                     <h1 class="display-3">
-                        Help
+                        Information
                     </h1>
                 </div>
             </div>
@@ -15,12 +15,12 @@
     </header>
 
     <main>
-        <section class="help">
+        <section class="info">
             <div class="container-md">
                 <hr class="border-3">
                 <div class="row g-5 align-items-center subjects-block">
 
-                    <div class="accordion" id="help">
+                    <div class="accordion" id="info">
                         <div class="col-md-12">
                             <div class="accordion-item my-2">
                                 <h2 class="accordion-header" id="home-tab-header">
@@ -35,8 +35,20 @@
                                 <div
                                 id="home-tab"
                                 class="accordion-collapse collapse"
-                                data-bs-parent="#help">
-                                    Content For Home
+                                data-bs-parent="#info">
+                                    <ul class="list-group">
+                                      <li class="list-group-item">The Home screen serves as the central hub of the application, offering access to key functionalities through navigation tabs.</li>
+                                      <li class="list-group-item">Top Navigation Bar:
+                                        <ul>
+                                          <li>Contains tabs such as Subject, Schedule, Task, Submission, Reports, and Information, enabling users to switch between different sections.</li>
+                                        </ul>
+                                      </li>
+                                      <li class="list-group-item">Bottom Navigation Bar:
+                                        <ul>
+                                          <li>Displays copyright information ("Copyright Study Buddy 2024") and provides a "Back to Top" option for easy navigation within long pages.</li>
+                                        </ul>
+                                      </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -54,9 +66,27 @@
                                 </h2>
                                 <div
                                 id="subjects-tab"
-                                class="accordion-collapse collapse"
-                                data-bs-parent="#help">
-                                    Content For Subjects
+                                class="accordion-collapse collapse mx-3"
+                                data-bs-parent="#info">
+                                    <ul class="list-group mt-2 mb-3">
+                                        <li class="list-group-item">Users can add and delete subjects using the plus symbol (+).</li>
+                                        <li class="list-group-item">Clicking the plus icon opens a subject form to create a new subject.</li>
+                                        <li class="list-group-item">Mandatory to fill in the subject name and description in the subject form.</li>
+                                        <li class="list-group-item">Press submit to update the list of subjects.</li>
+                                        <li class="list-group-item">After creating a subject, open it by clicking on the subject title tab. You will have two options available: either to create a topic or a task within the subject.</li>
+                                      </ul>
+
+                                      <h4>Creating a Topic:</h4>
+                                      <ul class="list-group mb-3">
+                                        <li class="list-group-item">Click the plus symbol (+) at the end of the Topic section to open the add topic form.</li>
+                                        <li class="list-group-item">Fill in the Topic Name and submit to update the list of topics.</li>
+                                      </ul>
+
+                                      <h4>Creating a Task:</h4>
+                                      <ul class="list-group mb-3">
+                                        <li class="list-group-item">Click the plus symbol (+) at the end of the Task section to open the Add Task form.</li>
+                                        <li class="list-group-item">Write the Task name and deadline, then press submit to update the list of tasks.</li>
+                                      </ul>
                                 </div>
                             </div>
                         </div>
@@ -75,8 +105,15 @@
                                 <div
                                 id="schedule-tab"
                                 class="accordion-collapse collapse"
-                                data-bs-parent="#help">
-                                    Content For Schedule
+                                data-bs-parent="#info">
+                                    <ul class="list-group">
+                                      <li class="list-group-item">7-day calendar for planning study sessions.</li>
+                                      <li class="list-group-item">Students can update schedules for the next 7 days.</li>
+                                      <li class="list-group-item">Previous sessions/tasks auto-delete after the 7th day.</li>
+                                      <li class="list-group-item">Choose between creating study sessions for topics or tasks.</li>
+                                      <li class="list-group-item">Notification for schedule overlaps; automatic adjustments if acknowledged.</li>
+                                      <li class="list-group-item">Example: If a session is from 1 pm to 3 pm and a new task is added from 1 pm to 2 pm, the calendar will adjust.</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +135,7 @@
                                     <div
                                     id="templates-tab"
                                     class="accordion-collapse collapse"
-                                    data-bs-parent="#help">
+                                    data-bs-parent="#info">
                                         Content For Templates
                                     </div>
                                 </div>
@@ -119,8 +156,12 @@
                                 <div
                                 id="tasks-tab"
                                 class="accordion-collapse collapse"
-                                data-bs-parent="#help">
-                                    Content For Tasks
+                                data-bs-parent="#info">
+                                    <ul class="list-group">
+                                      <li class="list-group-item">Display a list of tasks with their deadlines.</li>
+                                      <li class="list-group-item">Users can mark tasks as completed and submit them.</li>
+                                      <li class="list-group-item">Users have the option to delete tasks.</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -139,8 +180,11 @@
                                 <div
                                 id="submissions-tab"
                                 class="accordion-collapse collapse"
-                                data-bs-parent="#help">
-                                    Content For Submissions
+                                data-bs-parent="#info">
+                                    <ul class="list-group">
+                                      <li class="list-group-item">Displays a list of tasks that have been submitted, along with their submission dates.</li>
+                                      <li class="list-group-item">Users can view their submitted tasks and track their progress.</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -159,8 +203,11 @@
                                 <div
                                 id="report-tab"
                                 class="accordion-collapse collapse"
-                                data-bs-parent="#help">
-                                    Content For Report
+                                data-bs-parent="#info">
+                                    <ul class="list-group">
+                                      <li class="list-group-item">Provides a summary of study time hours spent during the week across different subjects and topics.</li>
+                                      <li class="list-group-item">Users can review their study time allocation and progress for better organization and planning.</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

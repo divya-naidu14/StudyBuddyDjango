@@ -161,3 +161,8 @@ main {
 .form-container-no-margin {
     margin: 0;
 }
+
+/* Setting properties for headers in accordion-item */
+.accordion-item h4 {
+  font-size: 1rem;
+}

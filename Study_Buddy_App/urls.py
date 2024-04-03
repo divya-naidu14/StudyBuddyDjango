@@ -38,11 +38,9 @@ urlpatterns = [
     path('delete-task/<int:id>/', views.delete_task, name='delete-task'),
     path('submit-task/<int:id>/', views.submit_task, name='submit-task'),
 
+    # urls to open submissions, report and information pages
     path('submissions', views.submissions, name='submissions'),
     path('report', views.report, name='report'),
-    path('help', views.helpPage, name='help'),
-    # path('time_tracker', views.timeBlocks, name='time-blocks'),
-    # path('delete_time_block/<int:pk>', views.deleteTimeBlock, name='delete-time-block'),
-    # path('help', views.help, name='help')
+    path('info', views.infoPage, name='info'),
 ]
 
